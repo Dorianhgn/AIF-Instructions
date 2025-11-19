@@ -49,7 +49,7 @@ First, we need to set up a clean, reproducible environment.
 
 We will use the "Quick, Draw\!" dataset.
 
-1.  Go to the dataset source: [https://console.cloud.google.com/storage/browser/quickdraw\_dataset/sketchrnn](https://console.cloud.google.com/storage/browser/quickdraw_dataset/sketchrnn)
+1.  Go to the dataset source: <a href="https://console.cloud.google.com/storage/browser/quickdraw_dataset/sketchrnn" target="_blank" rel="noopener noreferrer">https://console.cloud.google.com/storage/browser/quickdraw_dataset/sketchrnn</a>
 2.  Download the `.npy` files for the following 10 classes:
       * `cat`
       * `dolphin`
@@ -307,27 +307,27 @@ if __name__ == '__main__':
         os.makedirs('weights')
     torch.save(net.state_dict(), f'weights/{exp_name}_net.pth')
 
-    # Add TensorBoard logging and embedding visualization here (No edit needed)
+    # 8. Add TensorBoard logging and embedding visualization here (No edit needed)
     print("Adding embeddings to TensorBoard...")
-    # A. Get 256 random images and labels from your train_dataset
+    #8.a) Get 256 random images and labels from your train_dataset
     perm = torch.randperm(len(train_dataset)) 
     images, labels = train_dataset.tensors[0][perm][:256], train_dataset.tensors[1][perm][:256]
     images = images.to(device)
 
-    # B. Get embeddings from the model
+    # 8.b) Get embeddings from the model
     with torch.no_grad():
         embeddings = net.get_features(images) # Use the method you defined!
 
-    # C. Add to TensorBoard
+    # 8.c) Add to TensorBoard
     writer.add_embedding(embeddings,
                         metadata=labels,
                         label_img=images.reshape(-1, 1, 28, 28), # Reshape for TB
                         global_step=1)
 
-    # D. Save computational graph
+    # 8.d) Save computational graph
     writer.add_graph(net, images)
 
-    # E. Save a sample of images
+    # 8.e) Save a sample of images
     img_grid = torchvision.utils.make_grid(images.reshape(-1, 1, 28, 28)[:64])
     writer.add_image('quickdraw_images', img_grid)
 

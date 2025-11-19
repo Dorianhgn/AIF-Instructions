@@ -163,7 +163,7 @@ async def batch_predict(files: List[UploadFile] = File(...)):
     #     results.append(...)
     
     return {"results": results}
-````
+```
 
 ### 🕵️‍♂️ Hints for the code
 
@@ -173,8 +173,11 @@ async def batch_predict(files: List[UploadFile] = File(...)):
 The "Quick, Draw!" dataset is grayscale. However, uploaded images might be RGB.
 
 1.  `image = image.convert('L')` converts to grayscale.
+
 2.  `image = image.resize((28, 28))` handles the size.
+
 3.  To make it a tensor: `torch.tensor(np.array(image))` or use `torchvision.transforms.ToTensor()`.
+
 4.  **Crucial**: The model expects a batch of images `(Batch_Size, Channels, Height, Width)`. Even for a single image, you need to add the batch dimension. `tensor.unsqueeze(0)` is your friend.
 
 </details>
@@ -243,4 +246,4 @@ In `batch_predict`, processing images one by one inside a `for` loop is okay, bu
 
 -----
 
-**Next Step:** Now that our API works locally, we need to package it so it can run anywhere. In the next part, we will learn about **Docker**.
+**Next Step:** Now that our API works locally, we need to create a user-friendly interface. In the next part, we will build a simple web UI using **Gradio** that interacts with this API. After that, we will Dockerize both the API and the UI for easy deployment!

@@ -30,6 +30,7 @@ Start with **[Building the Model](1-api-backend/backend.md)** to begin your jour
 - Python 3.10+
 - Basic understanding of machine learning concepts
 - Familiarity with command line tools
+- If using Windows, use <a href="https://code.visualstudio.com/docs/remote/wsl" target="_blank" rel="noopener noreferrer">vscode in WSL2</a> for best compatibility.
 
 ## 🛠️ Tech Stack
 
