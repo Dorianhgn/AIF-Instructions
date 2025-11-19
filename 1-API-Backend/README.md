@@ -154,11 +154,11 @@ Let's create the script that will actually run the training.
 
     # --- THIS IS THE TRAIN FUNCTION ---
     # (We will add val_loader and writer later)
-    def train(net, optimizer, loader, device, epochs=10):
+    def train(net, optimizer, train_loader, device, epochs=10):
         criterion = nn.CrossEntropyLoss()
         for epoch in range(epochs):
             running_loss = []
-            t = tqdm(loader)
+            t = tqdm(train_loader)
             for x, y in t:
                 x, y = x.to(device), y.to(device) # Move data to device
                 
@@ -179,12 +179,12 @@ Let's create the script that will actually run the training.
         return running_loss
 
     # --- THIS IS THE TEST FUNCTION SKELETON ---
-    def test(model, loader, device):
+    def test(model, test_loader, device):
         model.eval() # Set model to evaluation mode
         test_corrects = 0
         total = 0
         with torch.no_grad(): # Disable gradient calculation
-            for x, y in loader:
+            for x, y in test_loader:
                 # TODO: Move data to device
                 x, y = ...
                 
@@ -400,7 +400,7 @@ You're ready.
     ```
 3.  Open `http://localhost:6006` in your browser.
 4.  **Check the `Graph` tab**: You should see your `ConvNet` architecture.
-    5\.  **Check the `Projector` tab**: Click the "inactive" button and select "projector". You should see your 10 classes starting to form distinct clusters. This is your model learning\!
+5.  **Check the `Projector` tab**: Click the "inactive" button and select "projector". You should see your 10 classes starting to form distinct clusters. This is your model learning\!
 
 -----
 
