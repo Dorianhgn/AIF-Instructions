@@ -167,20 +167,20 @@ async def batch_predict(files: List[UploadFile] = File(...)):
 
 ### 🕵️‍♂️ Hints for the code
 
-\<details\>
-\<summary\>How to transform the image?\</summary\>
+<details>
+<summary>How to transform the image?</summary>
 
-The "Quick, Draw\!" dataset is grayscale. However, uploaded images might be RGB.
+The "Quick, Draw!" dataset is grayscale. However, uploaded images might be RGB.
 
 1.  `image = image.convert('L')` converts to grayscale.
 2.  `image = image.resize((28, 28))` handles the size.
 3.  To make it a tensor: `torch.tensor(np.array(image))` or use `torchvision.transforms.ToTensor()`.
 4.  **Crucial**: The model expects a batch of images `(Batch_Size, Channels, Height, Width)`. Even for a single image, you need to add the batch dimension. `tensor.unsqueeze(0)` is your friend.
 
-\</details\>
+</details>
 
-\<details\>
-\<summary\>How to read an UploadFile?\</summary\>
+<details>
+<summary>How to read an UploadFile?</summary>
 
 In FastAPI, `UploadFile` is asynchronous. You must use `await`:
 
@@ -190,10 +190,10 @@ contents = await file.read()
 
 Then pass `contents` to `io.BytesIO(contents)` to make it look like a real file object for Pillow.
 
-\</details\>
+</details>
 
-\<details\>
-\<summary\>How to get the class name from prediction?\</summary\>
+<details>
+<summary>How to get the class name from prediction?</summary>
 
 The model returns raw logits (scores).
 
@@ -201,7 +201,7 @@ The model returns raw logits (scores).
 2.  `pred_index = torch.argmax(probs, dim=1).item()` gives the index of the highest score.
 3.  `CLASS_NAMES[pred_index]` gives the string label.
 
-\</details\>
+</details>
 
 ## Step 4: Run the Server
 

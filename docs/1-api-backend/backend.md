@@ -69,10 +69,10 @@ Let's see what this data looks like.
 
 1.  Create a new notebook (eg. `EDA.ipynb`).
 2.  **Task**: In this notebook, load one of the `.npy` files.
-    \<details\>
-    \<summary\>🕵️‍♂️ Hint\</summary\>
+    <details>
+    <summary>🕵️‍♂️ Hint</summary>
     Use `numpy.load()`.
-    \</details\>
+    </details>
 4.  **Task**: What is the shape of the data?
 5.  **Task**: Visualize a few images with `plt.imshow`.
 
@@ -228,11 +228,11 @@ Let's test our model and functions.
 4.  **Task: Create `DataLoader`s** for your train, val, and test `TensorDataset`s, with a **careful choice** of this parameters.
       * **`batch_size`**: This is a trade-off. A small size is inefficient; a large size can cause an OOM (Out Of Memory) error. You can try different values and watch your computer's memory\!
       * **`shuffle`**: `True` for ??? (to randomize data) and `False` for ???.
-      * **`num_workers`**: This uses parallel processes to load data. A good rule of thumb is \~20% of your CPU threads.
-        \<details\>
-        \<summary\>🕵️‍♂️ Hint: How to find CPU threads\</summary\>
+      * **`num_workers`**: This uses parallel processes to load data. A good rule of thumb is ~20% of your CPU threads.
+        <details>
+        <summary>🕵️‍♂️ Hint: How to find CPU threads</summary>
         On WSL/Linux, run `nproc`. On Windows, open Task Manager, go to the Performance tab, and look at "Logical processors".
-        \</details\>
+        </details>
       * **`random_state`** : To fix your splits for reproductible runs.
 5.  **Task: Train\!**
       * Set your device: `device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')`
@@ -348,8 +348,8 @@ if __name__ == '__main__':
           * `--weight_decay`
       * After parsing, retrieve these args into variables (e.g., `epochs = args.epochs`).
 
-    \<details\>
-    \<summary\>🕵️‍♂️ Hint: `argparse`\</summary\>
+    <details>
+    <summary>🕵️‍♂️ Hint: `argparse`</summary>
 
     ```python
     import argparse
@@ -359,7 +359,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     ```
 
-    \</details\>
+    </details>
 
 2.  **Task: TensorBoard**: We need to see our training logs\!
 

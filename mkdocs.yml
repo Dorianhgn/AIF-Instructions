@@ -1,0 +1,56 @@
+site_name: AIF Instructions
+site_description: Step-by-step guide for building and deploying ML applications
+site_author: AIF Team
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+
+nav:
+  - Home: index.md
+  - '1. API & Backend':
+    - 'Building the Model': 1-api-backend/backend.md
+    - 'Exposing with FastAPI': 1-api-backend/api.md
+    - 'Building UI with Gradio': 1-api-backend/gradio.md
+  - '2. Dockerisation': 2-dockerisation/index.md
+  - '3. Orchestration': 3-orchestration/index.md
+  - '4. Cloud Deploy': 4-cloud-deploy/index.md
