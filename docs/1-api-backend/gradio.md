@@ -4,6 +4,16 @@ We have a trained model and an API to serve it. But unless you like using `curl`
 
 We will use **Gradio**. It's a fantastic library for building Machine Learning demos in pure Python. It allows us to draw on a digital sketchpad and send that image to our API.
 
+## Step 0: Create a New Branch
+
+Let's create a new branch for frontend development:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b dev-frontend
+```
+
 ## Step 1: Install Gradio
 
 Update your `requirements.txt` to include `gradio` and `requests`:
@@ -164,6 +174,27 @@ To test this, you need **two** terminals open.
 3.  Open the URL shown in Terminal 2 (usually `http://127.0.0.1:7860`) in your web browser.
 
 4.  **Draw\!** Try drawing a banana. Does it work?
+
+## Step 4: Commit and Create Pull Request
+
+Your frontend is complete! Time to merge it.
+
+1. **Commit your changes**:
+   ```bash
+   git add frontend.py requirements.txt
+   git commit -m "Add Gradio frontend for model interaction"
+   ```
+
+2. **Push and create a Pull Request**:
+   ```bash
+   git push origin dev-frontend
+   ```
+   
+3. **On GitHub**: Create a Pull Request from `dev-frontend` to `main`, review your changes, merge it, and then update your local `main` branch:
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
 
 -----
 

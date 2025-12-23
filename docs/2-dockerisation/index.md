@@ -4,6 +4,16 @@ We have an API and a Frontend working on your machine. But if you send your code
 
 To solve this, we use **Docker**.
 
+## Step -1: Create a New Branch
+
+Start by creating a new branch for dockerization:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b dev-docker
+```
+
 ## Step 0: What is Docker?
 
 Before we code, watch this short video. It explains the difference between a **Dockerfile** (the recipe), an **Image** (the cake mold), and a **Container** (the actual cake).
@@ -138,11 +148,17 @@ Let's fix this by being smarter about the order of operations. **We want to copy
     # 1. Copy ONLY the requirements first
     COPY requirements-api.txt .
 
-    # 2. Install dependencies
+    # 2. Install dependencies (including gdown for model weights)
     # Since requirements-api.txt hasn't changed, Docker will use the CACHE for this layer!
-    RUN pip install --no-cache-dir -r requirements-api.txt
+    RUN pip install --no-cache-dir -r requirements-api.txt && \
+        pip install --no-cache-dir gdown
 
-    # 3. Copy the rest of the code
+    # 3. Download model weights
+    # Replace YOUR_GOOGLE_DRIVE_FILE_ID with your actual file ID
+    RUN mkdir -p weights && \
+        gdown --id YOUR_GOOGLE_DRIVE_FILE_ID -O weights/your_exp_name_net.pth
+
+    # 4. Copy the rest of the code
     # This layer will be rebuilt, but it's super fast (just copying files)
     COPY . .
     # ----------------------
@@ -154,7 +170,14 @@ Let's fix this by being smarter about the order of operations. **We want to copy
 
     </details>
 
-2.  **Verify**:
+2.  **Important: Upload your model weights**:
+      * Train your model and save the weights locally
+      * Upload `weights/your_exp_name_net.pth` to Google Drive
+      * Get the sharing link and extract the file ID (the part after `/d/` and before `/view`)
+      * Replace `YOUR_GOOGLE_DRIVE_FILE_ID` in the Dockerfile with your actual ID
+      * Update `your_exp_name_net.pth` to match your actual filename
+
+3.  **Verify**:
       * Build (`docker build -t my-api .`). (First time might be slow as structure changed).
       * Change a comment in `api.py`.
       * Build again. **Boom\! Instantaneous.** 
@@ -188,6 +211,12 @@ CMD ["python", "frontend.py"]
 ```
 
 </details>
+
+3. **Commit your Dockerfiles**:
+   ```bash
+   git add Dockerfile Dockerfile-frontend requirements-api.txt requirements-frontend.txt
+   git commit -m "Add Dockerfiles for API and frontend services"
+   ```
 
 ## Step 4: Orchestrating with Docker Compose
 
@@ -276,10 +305,43 @@ docker-compose down
 
 
 
-## Step 5: Launch 
+## Step 5: Launch and Test
 
 1.  `docker-compose up --build`
 2.  Go to `http://localhost:7860`.
 3.  Enjoy your fully containerized MLOps project\!
 
+4. **Commit your orchestration**:
+   ```bash
+   git add docker-compose.yml
+   git commit -m "Add Docker Compose orchestration for full-stack deployment"
+   ```
+
+5. **Update the README**: Now that your project is fully containerized, update your `README.md` with deployment instructions. 
+  Replace the content with something like **[this](https://github.com/eddaiveland/movie-screening-platform/blob/c5070119b469a6a4bbb6178da24a125b4d0fda79/README.md)**.
+
+6. **Commit the README**:
+   ```bash
+   git add README.md
+   git commit -m "Update README with complete deployment instructions"
+   ```
+
+## Step 6: Create Pull Request
+
+Your application is now fully containerized! Let's merge this work.
+
+1. **Push and create a Pull Request**:
+   ```bash
+   git push origin dev-docker
+   ```
+
+2. **On GitHub**: Create a Pull Request from `dev-docker` to `main`, merge it, and update your local `main`:
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+
+Congratulations! You now have a fully version-controlled, containerized machine learning application ready for deployment.
+
 <!-- end list -->
+

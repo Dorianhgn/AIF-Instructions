@@ -238,6 +238,70 @@ FastAPI provides automatic documentation.
 6.  Click **Execute**.
 7.  Check the "Server response". Did it guess correctly?
 
+## Step 6: Commit Your API
+
+Now that your API is working, commit your changes:
+
+```bash
+git add api.py requirements.txt
+git commit -m "Implement FastAPI server for model inference"
+```
+
+## Step 7: Create a Pull Request
+
+Excellent work! You've completed the backend development. Now it's time to merge your work into the `main` branch.
+
+### Why Pull Requests?
+
+Pull Requests (PRs) are a professional way to:
+- Review code before merging
+- Document what changed and why
+- Keep a clean project history
+- Catch bugs before they reach production
+
+### Create Your Pull Request
+
+1. **Push your branch to GitHub**:
+   ```bash
+   git push origin dev-backend
+   ```
+
+2. **Open GitHub in your browser**:
+   - Go to your repository on GitHub
+   - You should see a yellow banner saying "dev-backend had recent pushes" with a **Compare & pull request** button
+   - Click that button
+
+3. **Fill in the Pull Request form**:
+   - **Title**: "Add neural network training and FastAPI server"
+   - **Description**: Write a brief summary of what you built:
+     ```
+     ## Changes
+     - Implemented ConvNet architecture for Quick, Draw! dataset
+     - Created training pipeline with TensorBoard logging
+     - Built FastAPI server to serve model predictions
+     - Added proper requirements management
+     
+     ## Testing
+     - Model achieves ~XX% accuracy on test set
+     - API tested with Swagger UI
+     ```
+
+4. **Create the Pull Request**: Click the green "Create pull request" button
+
+5. **Merge the Pull Request**:
+   - Review your changes one last time
+   - Click "Merge pull request"
+   - Click "Confirm merge"
+   - Optionally, delete the `dev-backend` branch on GitHub
+
+6. **Update your local repository**:
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+
+Congratulations! Your backend is now officially part of the main codebase.
+
 -----
 
 ### Challenge (Optional)

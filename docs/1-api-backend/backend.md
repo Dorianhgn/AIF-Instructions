@@ -6,6 +6,64 @@ We will build everything from the ground up: setting up the environment, explori
 
 Let's get started.
 
+## Step 0: Git Repository Initialization
+
+Before writing any code, we need to set up version control. Git allows you to track changes, collaborate with others, and maintain a clean project history.
+
+### 0.1: Initialize Your Repository
+
+1. **Create a new repository on GitHub or GitLab**:
+   - Go to GitHub and create a new repository
+   - Name it something meaningful like `Quick_Draw_Vision_Project`
+   - Do **not** initialize it with a README yet (we'll do that locally)
+
+2. **Initialize Git locally**:
+   ```bash
+   git init
+   ```
+
+3. **Create a README**:
+   Create a `README.md` file with your project title:
+   ```markdown
+   # Quick, Draw! Vision Project
+   
+   A deep learning project to recognize hand-drawn sketches using a Convolutional Neural Network.
+   ```
+
+4. **Add a Python `.gitignore`**:
+   - Download the official Python `.gitignore` from [GitHub's gitignore repository](https://github.com/github/gitignore/blob/main/Python.gitignore)
+   - Save it as `.gitignore` in your project root
+   - This prevents Python cache files, virtual environments, and other unnecessary files from being tracked
+
+5. **Make your first commit**:
+   ```bash
+   git add README.md .gitignore
+   git commit -m "Initial commit: Add README and .gitignore"
+   ```
+
+6. **Push to remote**:
+   ```bash
+   git branch -M main
+   git remote add origin <your-repository-url>
+   git push -u origin main
+   ```
+
+### 0.2: Create a Development Branch
+
+We will use **feature branches** to keep our `main` branch clean and stable.
+
+1. **Create a new branch** for backend development:
+   ```bash
+   git checkout -b dev-backend
+   ```
+
+2. **Why use branches?**
+   - `main` stays clean and deployable
+   - `dev-backend` is where you experiment and build
+   - Later, you'll merge via Pull Request for review
+
+**Important:** From now on, you should make **clear and informative commits** at each important step of the project. Good commit messages help you and others understand what changed and why.
+
 ## Step 1: Environment Setup
 
 First, we need to set up a clean, reproducible environment.
@@ -45,6 +103,12 @@ First, we need to set up a clean, reproducible environment.
     pip install jupyter notebook
     ```
 
+6. **Commit your changes**:
+   ```bash
+   git add requirements.txt
+   git commit -m "Add project dependencies"
+   ```
+
 ## Step 2: Get the Data
 
 We will use the "Quick, Draw\!" dataset.
@@ -62,6 +126,15 @@ We will use the "Quick, Draw\!" dataset.
       * `donut`
       * `eye`
 3.  Create a `data/` directory in your project root and move all 10 `.npy` files into it.
+4.  **Update `.gitignore`**: Add the following line to your `.gitignore` to avoid committing large data files:
+   ```
+   data/
+   ```
+5.  **Commit your progress**:
+   ```bash
+   git add .gitignore
+   git commit -m "Configure gitignore to exclude data files"
+   ```
 
 ## Step 3: Data Exploration (EDA)
 
@@ -128,6 +201,12 @@ Now, let's define our network architecture.
         5.  `Linear` (128 output features) -\> `ReLU`
         6.  `Linear` (10 output features, for our 10 classes)
       * **Challenge**: You must **figure out the `in_channels` and `out_channels`** for each `Conv2d` layer, and the `in_features` for the first `Linear` layer. Do not use `padding` or `dilation`. Check the PyTorch documentation\!
+
+4. **Commit your model**:
+   ```bash
+   git add model.py
+   git commit -m "Implement ConvNet architecture"
+   ```
 
 ## Step 5: Create the Training Logic (`train.py`)
 
@@ -401,6 +480,29 @@ You're ready.
 3.  Open `http://localhost:6006` in your browser.
 4.  **Check the `Graph` tab**: You should see your `ConvNet` architecture.
 5.  **Check the `Projector` tab**: Click the "inactive" button and select "projector". You should see your 10 classes starting to form distinct clusters. This is your model learning\!
+
+## Step 10: Commit Your Neural Network
+
+Now that you have a working, trained neural network, it's time to save your progress.
+
+1. **Add all training-related files**:
+   ```bash
+   git add train.py model.py EDA.ipynb
+   git commit -m "Complete neural network training pipeline with TensorBoard logging"
+   ```
+
+2. **Update `.gitignore`**: Add these lines to avoid committing training artifacts:
+   ```
+   runs/
+   weights/
+   .venv/
+   ```
+
+3. **Commit the gitignore update**:
+   ```bash
+   git add .gitignore
+   git commit -m "Exclude training artifacts from version control"
+   ```
 
 -----
 
