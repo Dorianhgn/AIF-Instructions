@@ -378,6 +378,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Cannot access the application via external IP.
 
 **Solution:**
+
 - Verify the firewall rules were created: `gcloud compute firewall-rules list`
 - Make sure the rules allow tcp:5075 and tcp:7860
 - Check if the containers are running on the instance: `sudo docker-compose ps`
@@ -387,6 +388,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Cannot SSH into the instance.
 
 **Solution:**
+
 - Verify the instance is running in the GCP console
 - Check your zone is correct (should be `us-central1-f`)
 - Try adding `--verbosity=debug` to the SSH command to see detailed error messages
@@ -397,6 +399,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Docker commands fail or containers don't start.
 
 **Solution:**
+
 - Verify Docker is installed: `sudo docker --version`
 - Check Docker service status: `sudo systemctl status docker`
 - View container logs: `sudo docker-compose logs`
@@ -408,6 +411,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Error message "Address already in use" when starting containers.
 
 **Solution:**
+
 - Stop all running containers: `sudo docker-compose down`
 - Check if processes are using the ports: `sudo lsof -i :5075` and `sudo lsof -i :7860`
 - Kill the processes if needed: `sudo kill -9 <PID>`
@@ -417,6 +421,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Cannot push to Docker Hub or access denied.
 
 **Solution:**
+
 - Make sure you're logged in: `docker login`
 - Verify your username is correct in the image tags
 - Check that your images are tagged correctly: `docker images`
@@ -427,6 +432,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** API fails with "model file not found" error.
 
 **Solution:**
+
 - Make sure the `weights/` directory and model file exist in your local project
 - Verify the model path in `Dockerfile` matches your actual file location
 - Check that gdown successfully downloaded the weights during Docker build
@@ -437,6 +443,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Gradio interface cannot connect to the API.
 
 **Solution:**
+
 - Verify both containers are running: `sudo docker-compose ps`
 - Check the API URL in `frontend.py` uses the environment variable
 - Make sure the `depends_on` directive is in the `docker-compose.yml`
@@ -447,6 +454,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Cannot build images or load images due to insufficient disk space.
 
 **Solution:**
+
 - Remove unused Docker resources: `sudo docker system prune -a`
 - Check disk usage: `df -h`
 - Remove old images: `sudo docker image prune -a`
@@ -457,6 +465,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Container crashes with "exec format error" on GCP.
 
 **Solution:**
+
 - Make sure you built with `--platform=linux/amd64` flag
 - Rebuild your images with the correct platform flag
 - Push the new images to Docker Hub
@@ -487,12 +496,14 @@ You can stop the instance from the Google Cloud Platform console. You can delete
 **Always remember to stop the instance when you are not using it to avoid unnecessary charges.** You have a limited $50 credit, so be careful with your usage.
 
 To stop the instance:
+
 - Go to the GCP Console
 - Navigate to Compute Engine → VM Instances
 - Click the three dots next to your instance
 - Click **Stop**
 
 To start it again:
+
 - Click the three dots next to your instance
 - Click **Start**
 
