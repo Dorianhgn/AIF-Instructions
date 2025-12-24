@@ -144,7 +144,7 @@ Let's see what this data looks like.
 2.  **Task**: In this notebook, load one of the `.npy` files.
     <details>
     <summary>🕵️‍♂️ Hint</summary>
-    Use `numpy.load()`.
+    Use [`numpy.memmap()`](https://numpy.org/doc/stable/reference/generated/numpy.memmap.html).
     </details>
 4.  **Task**: What is the shape of the data?
 5.  **Task**: Visualize a few images with `plt.imshow`.
@@ -299,7 +299,7 @@ Let's test our model and functions.
     from sklearn.model_selection import train_test_split
     ```
 3.  **Task: Data Prep**
-      * Load all 10 `.npy` files.
+      * Load all 10 `.npy` files using [`numpy.memmap`](https://numpy.org/doc/stable/reference/generated/numpy.memmap.html) (ask your favorite AI about it).
       * Combine them into one giant `X` array and one `y` array for labels.
       * **Split your data** into train, validation, and test sets. (e.g., 70% train, 15% val, 15% test).
       * Convert them to PyTorch Tensors.
@@ -316,7 +316,7 @@ Let's test our model and functions.
 5.  **Task: Train\!**
       * Set your device: `device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')`
       * Initialize your model: `net = ConvNet(dropout_rate=0.5).to(device)`
-      * Define an optimizer: `optimizer = optim.SGD(net.parameters(), lr=0.001)` (Try `SGD` or `AdamW` too\!)
+      * Define an optimizer: `optimizer = optim.SGD(net.parameters(), lr=0.001)` (Try `Adam` or `AdamW` too\!)
       * Run the training: `losses = train(net, optimizer, train_loader, device, epochs=5)`
       * Plot the `losses` with `matplotlib`. Did it learn?
       * Run testing: `acc = test(net, test_loader, device)`
@@ -496,6 +496,8 @@ Now that you have a working, trained neural network, it's time to save your prog
    runs/
    weights/
    .venv/
+   *.pth
+   *.ckpt
    ```
 
 3. **Commit the gitignore update**:

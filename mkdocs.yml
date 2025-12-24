@@ -52,5 +52,4 @@ nav:
     - 'Exposing with FastAPI': 1-api-backend/api.md
     - 'Building UI with Gradio': 1-api-backend/gradio.md
   - '2. Dockerisation': 2-dockerisation/index.md
-  - '3. Orchestration': 3-orchestration/index.md
-  - '4. Cloud Deploy': 4-cloud-deploy/index.md
+  - '3. Cloud Deploy': 3-cloud-deploy/index.md
